@@ -7,11 +7,17 @@
 <body>
 	{% for food in foods %}
 	<ul>
+		<h3>The  {{forloop.counter}} food : </h3>
 		<li> Food name : {{food.name}} </li>
 		<li> Food price : {{food.price}} </li>
 		<li> Food comment : {{food.comment}} </li>
-		<li> Food is_spicy : {{food.is_spicy}} </li>
+		<!-- <li> Food is_spicy : {{food.is_spicy}} </li> -->
+		<li> Food is_spicy :  {% if food.is_spicy %} spicy {% else %}
+			not spicy {% endif %}
+		</li>
 	</ul>
+	{% empty %}
+	    <p>THIS RESTAURTANT SELLS NOTHING</p>
     {% endfor %}
 </body>
 </html>
