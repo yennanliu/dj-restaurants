@@ -5,6 +5,14 @@
 
 ### Quick start
 ```bash
+# run the app
+export PYTHONPATH=/Users/$USER/dj-restaurants/
+cd dj-restaurants/mysite
+python manage.py runserver
+```
+
+### Operation
+```bash
 # init project
 source activate django-env
 cd dj-restaurants 
@@ -13,10 +21,11 @@ django-admin.py startproject mysite
 # init app
 cd dj-restaurants/mysite && python manage.py startapp restaurants
 
-# run the app
-export PYTHONPATH=/Users/$USER/dj-restaurants/
-cd dj-restaurants/mysite
-python manage.py runserver
+# check if DB model is correct
+python manage.py check
+
+# make migration
+python manage.py makemigrations restaurants
 ```
 
 ### Structure
