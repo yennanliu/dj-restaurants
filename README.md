@@ -16,3 +16,7 @@ export PYTHONPATH=/Users/$USER/dj-restaurants/
 cd dj-restaurants/mysite
 python manage.py runserver
 ```
+
+### Endpoints
+- http://127.0.0.1:8000/here
+- http://127.0.0.1:8000/2/plus/2/

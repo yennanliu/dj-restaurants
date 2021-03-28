@@ -23,3 +23,15 @@ def add(request, a, b):
     #return HttpResponse(t.render(c))
     # s = int(a) + int(b)
     # return HttpResponse(str(s))
+
+def menu(request):
+    food = {'name': 'hamburger',
+            'price' : 199,
+            'comment' : 'great!',
+            'is_spicy' : False
+    }
+    # locals() will return all local vars in this method
+    return render_to_response('menu.html', locals())
+
+
+
