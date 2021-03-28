@@ -12,6 +12,7 @@ django-admin.py startproject mysite
 
 
 # run the app
-cd mysite
+export PYTHONPATH=/Users/$USER/dj-restaurants/
+cd dj-restaurants/mysite
 python manage.py runserver
 ```
