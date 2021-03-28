@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'restaurants' # the restaurants app
 )
 
 MIDDLEWARE_CLASSES = (
