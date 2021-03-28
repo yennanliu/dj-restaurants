@@ -1,7 +1,7 @@
 # dj-restaurants
 
 > Build restaurants app via Django framework
-- python 3.4, Django 1.7
+- Python 3.4, Django 1.7
 
 ### Quick start
 ```bash
@@ -10,6 +10,8 @@ source activate django-env
 cd dj-restaurants 
 django-admin.py startproject mysite
 
+# init app
+cd dj-restaurants/mysite && python manage.py startapp restaurants
 
 # run the app
 export PYTHONPATH=/Users/$USER/dj-restaurants/
