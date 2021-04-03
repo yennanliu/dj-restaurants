@@ -3,7 +3,7 @@ from django import template
 #from django.template.loader import get_template
 from django.shortcuts import render_to_response
 
-from restaurants.models import Restaurant, Food
+#from restaurants.models import Restaurant, Food
 
 def here(request):
     return HttpResponse("helloooo! i am here !!")
@@ -48,6 +48,6 @@ def add(request, a, b):
 #     return render_to_response('menu.html', locals())
 
 
-def menu(request):
-    restaurants = Restaurants.objects.all()
-    return render_to_response("menu.html", locals())
+# def menu(request):
+#     restaurants = Restaurant.objects.all()
+#     return render_to_response("menu.html", locals())

@@ -29,6 +29,29 @@ python manage.py check
 python manage.py makemigrations restaurants
 ```
 
+```python
+# manually insert test data
+python manage.py shell   
+
+# in the django shell
+from restaurants.models import Restaurant, Food
+r1 = Restaurant(name="burger king", phone_number = '123', address = 'some address')
+r1.save()
+r2 = Restaurant(name="shokiya", phone_number = '456', address = 'some address 2')
+r2.save()
+
+restaurants = Restaurant.objects.all()
+
+r = Restaurant.objects.get(name= "burger king")
+f1 = Food(name='burger', price = 120, comment='great', is_spicy=True, restaurant=r)
+f1.save()
+
+r = Restaurant.objects.get(name= "shokiya")
+f2 = Food(name='shushi', price = 500, comment='ohhh', is_spicy=True, restaurant=r)
+f2.save()
+
+```
+
 ### Structure
 ```
 ├── README.md
