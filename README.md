@@ -6,6 +6,7 @@
 ### Quick start
 ```bash
 # run the app
+source activate django-env
 export PYTHONPATH=/Users/$USER/dj-restaurants/
 cd dj-restaurants/mysite
 python manage.py runserver

@@ -8,6 +8,9 @@ class Restaurant(models.Model):
     phone_number = models.CharField(max_length=15)
     address = models.CharField(max_length=50, blank=True)
 
+    # overrite __unicode__ method
+    def __unicode__(self):
+        return self.name
 
 class Food(models.Model):
     name = models.CharField(max_length=20)
@@ -15,3 +18,11 @@ class Food(models.Model):
     comment = models.CharField(max_length=50, blank=True)
     is_spicy = models.BooleanField(default=False)
     restaurant = models.ForeignKey(Restaurant)
+
+    # overrite __unicode__ method
+    def __unicode__(self):
+        return self.name
+
+#  define meta so can define ordering
+class Meta:
+    ordering = ['price']
