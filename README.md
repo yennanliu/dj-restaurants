@@ -39,7 +39,13 @@ cd dj-restaurants/mysite && python manage.py startapp restaurants
 python manage.py check
 
 # make migration
+# restaurants
 python manage.py makemigrations restaurants
+# admin
+python manage.py makemigrations admin
+
+# make admin superuser
+python manage.py createsuperuser
 ```
 
 ```python
