@@ -3,6 +3,19 @@
 > Build restaurants app via Django framework
 - Python 3.4, Django 1.7
 
+
+### Install
+```bash
+# install py 3.4 with conda
+# V1
+conda create -n django-env python=3.4
+
+# V2
+# https://stackoverflow.com/questions/57449169/how-to-install-deprecated-unsupported-python-3-4-on-conda-environment
+conda config --set restore_free_channel True
+conda create -n django-env python=3.4
+```
+
 ### Quick start
 ```bash
 # run the app
