@@ -10,6 +10,16 @@ def menu(request):
     restaurants = Restaurant.objects.all()
     return render_to_response("menu.html", locals())
 
+
+def meta(request):
+    values = request.META.items()
+    values.sort()
+    html = []
+    print ("=== meta ===")
+    for k, v in values:
+        print (k, v)
+    print ("=== meta ===")
+    
 # def menu(request):
 #     food1 = {'name': 'hamburger',
 #             'price' : 199,

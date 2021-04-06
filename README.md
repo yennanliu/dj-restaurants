@@ -5,6 +5,10 @@
 
 
 ### Install
+
+<details>
+<summary>Install</summary>
+
 ```bash
 # install py 3.4 with conda
 # V1
@@ -15,6 +19,7 @@ conda create -n django-env python=3.4
 conda config --set restore_free_channel True
 conda create -n django-env python=3.4
 ```
+</details>
 
 ### Quick start
 ```bash
@@ -26,6 +31,10 @@ python manage.py runserver
 ```
 
 ### Operation
+
+<details>
+<summary>Operation</summary>
+
 ```bash
 # init project
 source activate django-env
@@ -68,8 +77,9 @@ f1.save()
 r = Restaurant.objects.get(name= "shokiya")
 f2 = Food(name='shushi', price = 500, comment='ohhh', is_spicy=True, restaurant=r)
 f2.save()
-
 ```
+
+</details>
 
 ### Structure
 ```
@@ -100,6 +110,4 @@ f2.save()
 ```
 
 ### Endpoints
-- http://127.0.0.1:8000/here
-- http://127.0.0.1:8000/2/plus/2/
 - http://127.0.0.1:8000/menu
