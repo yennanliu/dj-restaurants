@@ -14,18 +14,19 @@
 # V1
 conda create -n django-env python=3.4
 
-# V2
+# V2  (if your conda can't install python 3.4 by default)
 # https://stackoverflow.com/questions/57449169/how-to-install-deprecated-unsupported-python-3-4-on-conda-environment
 conda config --set restore_free_channel True
 conda create -n django-env python=3.4
+
+# init env
+source activate django-env
 ```
 </details>
 
 ### Quick start
 ```bash
-# run the app
 source activate django-env
-export PYTHONPATH=/Users/$USER/dj-restaurants/
 cd dj-restaurants/mysite
 python manage.py runserver
 ```
@@ -35,33 +36,36 @@ python manage.py runserver
 <details>
 <summary>Operation</summary>
 
+### general OP
 ```bash
-# init project
+# 1) init project
 source activate django-env
 cd dj-restaurants 
 django-admin.py startproject mysite
 
-# init app
+# 2) init restaurants app
 cd dj-restaurants/mysite && python manage.py startapp restaurants
 
-# check if DB model is correct
+# 3) check if DB model is correct
 python manage.py check
 
-# make migration
+# 4) make DB migration
 # restaurants
 python manage.py makemigrations restaurants
 # admin
 python manage.py makemigrations admin
 
-# make admin superuser
+# 5) make admin superuser
 python manage.py createsuperuser
 ```
 
+### DB op (via django shell)
 ```python
 # manually insert test data
 python manage.py shell   
 
 # in the django shell
+# make restaurants records
 from restaurants.models import Restaurant, Food
 r1 = Restaurant(name="burger king", phone_number = '123', address = 'some address')
 r1.save()
@@ -70,6 +74,7 @@ r2.save()
 
 restaurants = Restaurant.objects.all()
 
+# make Food records
 r = Restaurant.objects.get(name= "burger king")
 f1 = Food(name='burger', price = 120, comment='great', is_spicy=True, restaurant=r)
 f1.save()
@@ -82,6 +87,10 @@ f2.save()
 </details>
 
 ### Structure
+
+<details>
+<summary>Structure</summary>
+
 ```
 ├── README.md
 ├── doc
@@ -108,6 +117,8 @@ f2.save()
 │       └── menu.html
 └── requirements.txt
 ```
+
+</details>
 
 ### Endpoints
 - http://127.0.0.1:8000/menu
