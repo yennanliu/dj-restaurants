@@ -4,6 +4,12 @@ from django.shortcuts import render_to_response
 
 from restaurants.models import Restaurant, Food
 
+
+def menu(request):
+    path = request.path
+    restaurants = Restaurant.objects.all()
+    return render_to_response("menu.html", locals())
+
 # def menu(request):
 #     food1 = {'name': 'hamburger',
 #             'price' : 199,
@@ -24,7 +30,3 @@ from restaurants.models import Restaurant, Food
 #     foods = [food1, food2, food3]  
 #     # locals() will return all local vars in this method
 #     return render_to_response('menu.html', locals())
-
-def menu(request):
-    restaurants = Restaurant.objects.all()
-    return render_to_response("menu.html", locals())
