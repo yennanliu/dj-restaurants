@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title> MENU </title>
-	<meta charset="utf-8">
-</head>
-<body>
-	 <p>There are {{foods | length}} dishes in total </p>
-	 
-	{% for food in foods %}
-	<ul>
-		<h3>The  {{forloop.counter}} food : </h3>
-		<li> Food name : {{food.name}} </li>
-		<li> Food price : {{food.price}} </li>
-		<li> Food comment : {{food.comment}} </li>
-		<!-- <li> Food is_spicy : {{food.is_spicy}} </li> -->
-		<li> Food is_spicy :  {% if food.is_spicy %} spicy {% else %}
-			not spicy {% endif %}
-		</li>
-	</ul>
-
-	{% empty %}
-	    <p>THIS RESTAURTANT SELLS NOTHING</p>
-    {% endfor %}
-</body>
+   <head>
+      <title> MENU </title>
+      <meta charset="utf-8">
+      <style>
+         table, th, td {
+         border: 1px solid black;
+         }
+      </style>
+   </head>
+   <body>
+      {% for r in restaurants %}
+      <h2>{{ r.name }}</h2>
+      {% if r.food_set.all %}
+      <p>There are {{r.food_set.all | length}} dishes in total </p>
+      <table>
+         <tr>
+            <th>food name</th>
+            <th>price</th>
+            <th>spicy_or_not</th>
+            <th>comment</th>
+         </tr>
+         {% for food in r.food_set.all %}
+         <tr>
+            <td> {{food.name}} </td>
+            <td> {{food.price}} </td>
+            <td> {% if food.is_spicy %}  SPICY {% else %} NOT SPICY {% endif %} </td>
+            <td> {{food.comment}} </td>
+         </tr>
+         {% endfor %}
+      </table>
+      {% else %}
+      <p>THIS RESTAURANT SELLS NOTHING</p>
+      {% endif %}
+      {% endfor %}
+   </body>
 </html>
