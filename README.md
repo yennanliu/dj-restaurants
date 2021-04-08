@@ -124,3 +124,4 @@ f2.save()
 - http://127.0.0.1:8000/menu
 - http://127.0.0.1:8000/admin/  (account : admin, pwd : admin)
 - http://127.0.0.1:8000/welcome/
+- http://127.0.0.1:8000/restaurants_list

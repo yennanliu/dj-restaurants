@@ -3,7 +3,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from mysite.views import here, add, welcome #, menu
-from restaurants.views import menu
+from restaurants.views import menu, list_restaurants
 
 urlpatterns = patterns('',
     # Examples:
@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
     url(r'^menu/$', menu),
     url(r'^welcome/$', welcome),
+    url(r'^restaurants_list/$', list_restaurants),
 )

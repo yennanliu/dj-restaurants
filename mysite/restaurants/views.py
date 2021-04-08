@@ -10,6 +10,9 @@ def menu(request):
     restaurants = Restaurant.objects.all()
     return render_to_response("menu.html", locals())
 
+def list_restaurants(request):
+    restaurants = Restaurant.objects.all()
+    return render_to_response('restaurants_list.html', locals())
 
 def meta(request):
     values = request.META.items()

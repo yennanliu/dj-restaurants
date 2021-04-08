@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title> Restaurants </title>
+      <meta charset="utf-8">
+      <style>
+         table, th, td {
+         border: 1px solid black;
+         }
+      </style>
+   </head>
+   <body>
+      <h2> Restaurants List </h2>
+      <table>
+         <tr>
+            <th>restaurant_name</th>
+            <th>phone_number</th>
+            <th>address</th>
+         </tr>
+         {% for r in restaurants %}
+         <tr>
+            <td> {{r.name}} </td>
+            <td> {{r.phone_number}} </td>
+            <td> {{r.address}} </td>
+         </tr>
+         {% endfor %}
+      </table>
+   </body>
+</html>
