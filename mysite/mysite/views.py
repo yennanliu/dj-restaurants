@@ -26,6 +26,12 @@ def add(request, a, b):
     # s = int(a) + int(b)
     # return HttpResponse(str(s))
 
+def welcome(request):
+    if 'user_name' in request.GET and request.GET['user_name'] != '':
+        return HttpResponse('welcome !!!' + request.GET['user_name'])
+    else:
+        return render_to_response('welcome.html', locals())
+
 # def menu(request):
 #     food1 = {'name': 'hamburger',
 #             'price' : 199,
