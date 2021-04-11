@@ -2,8 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django import template
 from django.utils import timezone
+from django.template import RequestContext
 
-from restaurants.models import Restaurant, Food
+
+from restaurants.models import Restaurant, Food, Comment
 
 def menu(request, id):
     if id:
@@ -33,7 +35,7 @@ def comment(request, id):
             date_time=date_time,
             restaurant=r
         )
-    return render_to_response('comment.html', locals())
+    return render_to_response('comment.html', RequestContext(request, locals()))
 
 def meta(request):
     values = request.META.items()
