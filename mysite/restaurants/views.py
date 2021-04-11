@@ -7,7 +7,9 @@ from restaurants.models import Restaurant, Food
 
 def menu(request):
     path = request.path
-    restaurants = Restaurant.objects.all()
+    #restaurants = Restaurant.objects.all()
+    restaurant = Restaurant.objects.get(id=1)
+    print ("restaurant = " + str(restaurant))
     return render_to_response("menu.html", locals())
 
 def list_restaurants(request):
