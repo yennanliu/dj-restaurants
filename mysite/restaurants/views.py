@@ -1,16 +1,15 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django import template
 from django.shortcuts import render_to_response
 
 from restaurants.models import Restaurant, Food
 
-
-def menu(request):
-    path = request.path
-    #restaurants = Restaurant.objects.all()
-    restaurant = Restaurant.objects.get(id=1)
-    print ("restaurant = " + str(restaurant))
-    return render_to_response("menu.html", locals())
+def menu(request, id):
+    if id:
+        restaurant = Restaurant.objects.get(id=id)
+        return render_to_response("menu.html", locals())
+    else:
+        return HttpResponseRedirect("/restaurants_list/")
 
 def list_restaurants(request):
     restaurants = Restaurant.objects.all()
@@ -24,7 +23,14 @@ def meta(request):
     for k, v in values:
         print (k, v)
     print ("=== meta ===")
-    
+
+# def menu(request):
+#     path = request.path
+#     #restaurants = Restaurant.objects.all()
+#     restaurant = Restaurant.objects.get(id=1)
+#     print ("restaurant = " + str(restaurant))
+#     return render_to_response("menu.html", locals())
+
 # def menu(request):
 #     food1 = {'name': 'hamburger',
 #             'price' : 199,

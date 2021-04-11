@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^here/$', here),
     # restaurants
     url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
-    url(r'^menu/$', menu),
+    url(r'^menu/(\d{1,5})/$', menu),
     url(r'^welcome/$', welcome),
     url(r'^restaurants_list/$', list_restaurants),
 )
