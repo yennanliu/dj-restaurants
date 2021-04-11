@@ -125,7 +125,12 @@ f2.save()
 </details>
 
 ### Endpoints
-- http://127.0.0.1:8000/menu
+- http://127.0.0.1:8000/menu/1   (or http://127.0.0.1:8000/menu/2 ...)
 - http://127.0.0.1:8000/admin/  (account : admin, pwd : admin)
-- http://127.0.0.1:8000/welcome/
 - http://127.0.0.1:8000/restaurants_list
+- http://127.0.0.1:8000/welcome/
+- http://127.0.0.1:8000/comment/1/ (or http://127.0.0.1:8000/comment/2/ ...)
+
+
+### Ref
+- https://github.com/its-django/mysite
