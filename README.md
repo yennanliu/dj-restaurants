@@ -57,6 +57,10 @@ python manage.py makemigrations admin
 
 # 5) make admin superuser
 python manage.py createsuperuser
+
+# 6) after adding "comment" DB model
+python manage.py makemigrations restaurants
+python manage.py migrate restaurants
 ```
 
 ### DB op (via django shell)

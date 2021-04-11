@@ -38,6 +38,7 @@
             <th>Restaurant name</th>
             <th>Phone number</th>
             <th>Address</th>
+             <th>Comment</th>
          </tr>
          {% for r in restaurants %}
          <tr>
@@ -45,6 +46,7 @@
             <td> {{r.name}} </td>
             <td> {{r.phone_number}} </td>
             <td> {{r.address}} </td>
+            <td> <a href="/comment/{{r.id}}"></a> </td>
          </tr>
          {% endfor %}
       </table>

@@ -3,13 +3,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 from mysite.views import here, add, welcome #, menu
-from restaurants.views import menu, list_restaurants
+from restaurants.views import menu, list_restaurants, comment
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'mysite.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+urlpatterns = patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
     # mysite
     url(r'^here/$', here),
@@ -18,4 +15,5 @@ urlpatterns = patterns('',
     url(r'^menu/(\d{1,5})/$', menu),
     url(r'^welcome/$', welcome),
     url(r'^restaurants_list/$', list_restaurants),
+    url(r'^comment/(\d{1,5})/$', comment),
 )
