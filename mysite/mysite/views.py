@@ -5,6 +5,13 @@ from django.shortcuts import render_to_response
 
 #from restaurants.models import Restaurant, Food
 
+def welcome(request):
+    # if already submit request
+    if 'user_name' in request.GET and request.GET['user_name'] != '':
+        return HttpResponse('welcome !!!' + request.GET['user_name'])
+    # if not yet submit request
+    else:
+        return render_to_response('welcome.html', locals())
 
 def here(request):
     return HttpResponse("helloooo! i am here !!")
@@ -26,15 +33,7 @@ def add(request, a, b):
     #return HttpResponse(t.render(c))
     # s = int(a) + int(b)
     # return HttpResponse(str(s))
-
-def welcome(request):
-    # if already submit request
-    if 'user_name' in request.GET and request.GET['user_name'] != '':
-        return HttpResponse('welcome !!!' + request.GET['user_name'])
-    # if not yet submit request
-    else:
-        return render_to_response('welcome.html', locals())
-
+    
 # def menu(request):
 #     food1 = {'name': 'hamburger',
 #             'price' : 199,

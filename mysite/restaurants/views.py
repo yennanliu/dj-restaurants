@@ -18,6 +18,8 @@ def menu(request, id):
 
 def list_restaurants(request):
     restaurants = Restaurant.objects.all()
+    # try to storage object via session
+    request.session['restaurants'] = restaurants
     return render_to_response('restaurants_list.html', locals())
 
 def comment(request, id):
