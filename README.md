@@ -178,17 +178,17 @@ s.get_decoded()
 </details>
 
 ### Endpoints
-- login
+- Login
     - http://127.0.0.1:8000/accounts/login/
-- admin page
+- Admin page
     - http://127.0.0.1:8000/admin/  (account : admin, pwd : admin)
-- restaurants list
+- Restaurants list
     - http://127.0.0.1:8000/restaurants_list
-- menu
+- Menu
     - http://127.0.0.1:8000/menu/1   (or http://127.0.0.1:8000/menu/2 ...)
-- comment
+- Comment
     - http://127.0.0.1:8000/comment/1/ (or http://127.0.0.1:8000/comment/2/ ...)
-- welcome
+- Welcome
     - - http://127.0.0.1:8000/welcome/
 
 ### Ref
