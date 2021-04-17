@@ -178,6 +178,8 @@ s.get_decoded()
 </details>
 
 ### Endpoints
+- login
+    - http://127.0.0.1:8000/accounts/login/
 - admin page
     - http://127.0.0.1:8000/admin/  (account : admin, pwd : admin)
 - restaurants list

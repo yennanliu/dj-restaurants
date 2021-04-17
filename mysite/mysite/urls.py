@@ -16,4 +16,5 @@ urlpatterns = patterns(
     url(r'^welcome/$', welcome),
     url(r'^restaurants_list/$', list_restaurants),
     url(r'^comment/(\d{1,5})/$', comment),
+    url(r'^accounts/', include('django.contrib.auth.urls')), # login
 )
