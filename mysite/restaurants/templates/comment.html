@@ -59,9 +59,10 @@
                 {% else %}
                 <p>No comment</p>
                 {% endif %}
-
                 <br /><br />
-
+                {% if error %}
+                <p style="color: red;"> * Form input incompleted, please input again!</p>
+                {% endif %}
                 <form action="" method="post" class="form-horizontal" role="form" style="width:33%; margin:auto; text-align:left">{% csrf_token %}
                     <div class="form-group">
                     <label for="visitor">Visitor:</label>
