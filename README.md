@@ -105,6 +105,42 @@ f.as_ul()
 # output table
 f.as_table()
 ```
+
+### Session OP
+```python
+from django.contrib.sessions.models import Session
+
+# example func
+def use_session(request):
+    request.session['lucky_number'] = 8 # set up lucky number
+    if 'lucky_number' in request.session:
+        lucky_number = request.session['lucky_number']
+        # read lucky_number
+        response = HttpResponse('your lucky number is ' + lucky_number)
+    del request.session['lucky_number'] # delete lucky_number
+    return response
+
+def session_test1(request):
+    sid = request.COOKIES['sessionid']
+    s = Session.objects.get(pk=sid)
+    s_info = 'Session ID: ' + sid + 'expire_date: ' + str(s.expire_date) + \
+    ' data : ' + str(s.get_decoded())
+    return HttpResponse(s_info)
+
+def session_test2(request):
+    sid = request.session.session_key
+    s = Session.objects.get(pk=sid)
+    s_info = 'Session ID: ' + sid + 'expire_date: ' + str(s.expire_date) + \
+    ' data : ' + str(s.get_decoded())
+    return HttpResponse(s_info)
+
+# command
+s = Session.objects.all()[0]
+s.expire_date
+s.session_data
+s.get_decoded()
+```
+
 </details>
 
 ### Structure
