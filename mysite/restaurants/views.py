@@ -6,6 +6,8 @@ from django.template import RequestContext
 
 
 from restaurants.models import Restaurant, Food, Comment
+from restaurants.forms import CommentForm
+
 
 def menu(request, id):
     if id:
@@ -24,21 +26,26 @@ def comment(request, id):
     else:
         return HttpResponseRedirect("/restaurants_list/")
     if request.POST:
-        visitor = request.POST['visitor']
-        content = request.POST['content']
-        email = request.POST['email']
-        date_time = timezone.localtime(timezone.now())
-        # error handling
-        error = any(not request.POST[k] for k in request.POST)
-        if not error:
-            Comment.objects.create(
+        f = CommentForm(request.POST)
+        if f.is_valid():
+            visitor = f.cleaned_data['visitor']
+            content = f.cleaned_data['content']
+            email = f.cleaned_data['email']
+            date_time = timezone.localtime(timezone.now())
+            c = Comment.objects.create(
                 visitor=visitor,
                 email=email,
                 content=content,
                 date_time=date_time,
                 restaurant=r
-            )
-    return render_to_response('comment.html', RequestContext(request, locals()))
+                )
+            f = CommentForm()
+
+    else:
+        f = CommentForm()
+
+    return render_to_response('comment.html', RequestContext(request, locals()))  
+
 
 def meta(request):
     values = request.META.items()
@@ -48,6 +55,38 @@ def meta(request):
     for k, v in values:
         print (k, v)
     print ("=== meta ===")
+
+
+# def comment(request, id):
+#     errors = []
+#     if id:
+#         r = Restaurant.objects.get(id=id)
+#     else:
+#         return HttpResponseRedirect("/restaurants_list/")
+#     if request.POST:
+#         visitor = request.POST['visitor']
+#         content = request.POST['content']
+#         email = request.POST['email']
+#         date_time = timezone.localtime(timezone.now())
+
+#         # error handling
+#         if any(not request.POST[k] for k in request.POST):
+#             errors.append('* there is some blank field, plz fill again')
+
+#         if '@' not in email:
+#             errors.append('* email format not correct, plz fill again')
+
+#         if not errors:
+#             Comment.objects.create(
+#                 visitor=visitor,
+#                 email=email,
+#                 content=content,
+#                 date_time=date_time,
+#                 restaurant=r
+#             )
+#             #visitor, email, content = ('', '', '')
+#     f = CommentForm()
+#     return render_to_response('comment.html', RequestContext(request, locals()))
 
 # def menu(request):
 #     path = request.path

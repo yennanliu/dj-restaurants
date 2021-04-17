@@ -88,6 +88,23 @@ f2 = Food(name='shushi', price = 500, comment='ohhh', is_spicy=True, restaurant=
 f2.save()
 ```
 
+### Form (comment form) OP
+```python
+from restaurants.forms import CommentForm
+
+f = CommentForm()
+
+print (f)
+
+# output page
+f.as_p()
+
+# output list
+f.as_ul()
+
+# output table
+f.as_table()
+```
 </details>
 
 ### Structure
