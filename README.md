@@ -4,7 +4,7 @@
 - Python 3.4, Django 1.7
 
 
-### Install
+### 1) Installation
 
 <details>
 <summary>Install</summary>
@@ -21,17 +21,20 @@ conda create -n django-env python=3.4
 
 # init env
 source activate django-env
+
+# install dependency
+pip install -r requirements.txt
 ```
 </details>
 
-### Quick start
+### 2) Quick Start
 ```bash
 source activate django-env
 cd dj-restaurants/mysite
 python manage.py runserver
 ```
 
-### Operation
+### 3) Operation
 
 <details>
 <summary>Operation</summary>
@@ -143,7 +146,7 @@ s.get_decoded()
 
 </details>
 
-### Structure
+### 4) Project Structure
 
 <details>
 <summary>Structure</summary>
@@ -177,7 +180,7 @@ s.get_decoded()
 
 </details>
 
-### Endpoints
+### 5) Endpoints
 - Login
     - http://127.0.0.1:8000/accounts/login/
 - Admin page
@@ -191,5 +194,5 @@ s.get_decoded()
 - Welcome
     - - http://127.0.0.1:8000/welcome/
 
-### Ref
+### 6) Ref
 - https://github.com/its-django/mysite
