@@ -2,8 +2,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from mysite.views import here, add, welcome #, menu
+from mysite.views import here, add, welcome, login, index
 from restaurants.views import menu, list_restaurants, comment
+
 
 urlpatterns = patterns(
     '',
@@ -16,5 +17,7 @@ urlpatterns = patterns(
     url(r'^welcome/$', welcome),
     url(r'^restaurants_list/$', list_restaurants),
     url(r'^comment/(\d{1,5})/$', comment),
-    url(r'^accounts/', include('django.contrib.auth.urls')), # login
+    #url(r'^accounts/', include('django.contrib.auth.urls')), # login
+    url(r'^accounts/login/$', login),
+    url(r'^index/$', index)
 )
