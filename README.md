@@ -188,7 +188,6 @@ s.get_decoded()
 | Restaurants list | http://127.0.0.1:8000/restaurants_list/ |  |
 | Menu | http://127.0.0.1:8000/menu/1 | http://127.0.0.1:8000/menu/2/  ...|
 | Comment | http://127.0.0.1:8000/comment/1/ | http://127.0.0.1:8000/comment/2/ ... |
-| Login | http://127.0.0.1:8000/accounts/login/ |  |
 
 
 ### 6) Ref
