@@ -5,6 +5,8 @@ admin.autodiscover()
 from mysite.views import here, add, welcome, login, index, logout
 from restaurants.views import menu, list_restaurants, comment
 
+# below is django default login logout method (default login, logout uses login.html under mysite/templates/registration)
+#from django.contrib.auth.views import login, logout
 
 urlpatterns = patterns(
     '',

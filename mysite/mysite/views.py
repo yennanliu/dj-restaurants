@@ -24,8 +24,8 @@ def login(request):
         return HttpResponseRedirect('/index/')
 
     else:
-        return render_to_response('registration/login.html',RequestContext(request, locals()) )
-
+        #return render_to_response('registration/login.html',RequestContext(request, locals()))
+        return render_to_response('login.html',RequestContext(request, locals()))
 
 def index(request):
     return render_to_response('index.html', RequestContext(request, locals()))
@@ -33,6 +33,7 @@ def index(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/index/')
+
 
 def welcome(request):
     # if already submit request
