@@ -183,6 +183,8 @@ s.get_decoded()
 ### 5) Endpoints
 |  Name  | Url | Description |
 | --- | ----- | -------- |
+| Home page | http://127.0.0.1:8000/index/ |  |
+| Register | http://127.0.0.1:8000/accounts/register/ |  |
 | Login | http://127.0.0.1:8000/accounts/login/ |  |
 | Admin | http://127.0.0.1:8000/admin/ |  (account : admin, pwd : admin) |
 | Restaurants list | http://127.0.0.1:8000/restaurants_list/ |  |
