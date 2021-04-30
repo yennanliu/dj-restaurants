@@ -144,6 +144,21 @@ s.session_data
 s.get_decoded()
 ```
 
+### Permission OP
+```python
+from restaurants.models import Comment
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+
+content_type = ContentType.objects.get_for_model(Comment)
+
+permission = Permission.objects.create(
+    codename='can_comment',
+    name='Can comment',
+    content_type=content_type
+    )
+```
+
 </details>
 
 ### 4) Project Structure

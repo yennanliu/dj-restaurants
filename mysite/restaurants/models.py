@@ -30,6 +30,12 @@ class Comment(models.Model):
     date_time = models.DateTimeField()
     restaurant = models.ForeignKey(Restaurant)
 
+    class Meta:
+        ordering = ['date_time']
+        permissions = (
+            ("can_comment", "Can Comment"),
+            )
+
 #  define meta so can define ordering
 class Meta:
     ordering = ['price']
