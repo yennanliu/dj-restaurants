@@ -55,7 +55,9 @@
                         <td> {{ r.name }} </td>
                         <td> {{ r.phone_number }} </td>
                         <td> {{ r.address }} </td>
-                        <td> <a href="/comment/{{r.id}}/"> Comment </a> </td> 
+                        {% if perms.restaurants.can_comment %}
+                        <td> <a href="/comment/{{r.id}}/"> comment </a> </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </table>

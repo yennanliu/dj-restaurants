@@ -159,6 +159,23 @@ permission = Permission.objects.create(
     )
 ```
 
+### Add user with specific permission
+```python
+from django.contrib.auth.models import User, Permission
+
+# plz make a new user with username = test_user1 first
+user = User.objects.get(username='test_user1')
+perm = Permission.objects.get(codename='can_comment')
+user.has_perm('restaurants.can_comment')
+
+user = User.objects.get(username='test_user1')
+user.has_perm('restaurants.can_comment')
+
+user.user_permissions.remove(perm)
+user = User.objects.get(username='test_user1')
+user.has_perm('restaurants.can_comment')
+```
+
 </details>
 
 ### 4) Project Structure

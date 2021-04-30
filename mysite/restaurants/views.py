@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django import template
 from django.utils import timezone
 from django.template import RequestContext
-
+from django.contrib.auth.decorators import login_required, permission_required
 
 from restaurants.models import Restaurant, Food, Comment
 from restaurants.forms import CommentForm
@@ -16,12 +16,16 @@ def menu(request, id):
     else:
         return HttpResponseRedirect("/restaurants_list/")
 
+@login_required
 def list_restaurants(request):
     restaurants = Restaurant.objects.all()
+
+    print (request.user.user_permissions.all())
     # try to storage object via session
     request.session['restaurants'] = restaurants
-    return render_to_response('restaurants_list.html', locals())
+    return render_to_response('restaurants_list.html', RequestContext(request, locals()))
 
+@permission_required('restaurants.can_comment', login_url='/accounts/login/')
 def comment(request, id):
     if id:
         r = Restaurant.objects.get(id=id)
