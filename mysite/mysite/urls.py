@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from mysite.views import here, add, welcome, login, index, logout
+from mysite.views import here, add, welcome, login, index, logout, register
 from restaurants.views import menu, list_restaurants, comment
 
 # below is django default login logout method (default login, logout uses login.html under mysite/templates/registration)
@@ -22,5 +22,6 @@ urlpatterns = patterns(
     #url(r'^accounts/', include('django.contrib.auth.urls')), # login
     url(r'^accounts/login/$', login),
     url(r'^accounts/logout/$', logout),
-    url(r'^index/$', index)
+    url(r'^index/$', index),
+     url(r'^accounts/register/$', register)
 )

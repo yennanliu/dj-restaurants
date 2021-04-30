@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title> Restaurant King </title>
+        <title> Register </title>
         <meta charset='utf-8'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
@@ -39,17 +39,10 @@
 
         <div class="container">
             <div class="center_padding">
-                <h2>Welcome to DJ Restaurant</h2>
-                {% if request.user.is_authenticated %}
-                <p>
-                    {{request.user}} You're login
-                    <a href="/accounts/logout/">log out</a>
-                </p>
-                <a href="/restaurants_list/">restaurant list</a>
-                {% else %}
-                <p>You're not login~<a href="/accounts/login/">log in</a></p>
-                {% endif %}
-                <p>If you don't have an account yet, Please <a href='/accounts/register/'>Register</a></p>
+                <form action="" method="post" class="form-default" style="text-align:left">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Register" class="btn btn-default">
+                </form>
             </div>
         </div>
 
