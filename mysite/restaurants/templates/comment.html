@@ -1,95 +1,52 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Comment </title>
-        <meta charset='utf-8'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-        <style>
-        th { text-align: center; }
-        div.center_padding {
-            text-align: center;
-            padding: 128px 15px;
-        }
+{% extends "base.html" %}
 
-        </style>
-    </head>
-    <body>
+{% block title %} Comment {% endblock %}
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">MySite</a>
-                </div>
-                <!--div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div--><!--/.nav-collapse -->
+{% block content %}
+        <h2>{{ r.name }}'s comment </h2>
+        {% if r.comment_set.all %}
+        <p>There are {{ r.comment_set.all|length }} comments</p>
+        <table class="table table-hover">
+            <tr>
+                <th>Visitor</th>
+                <th>Time</th>
+                <th>Comment</th>
+            </tr>
+            {% for c in r.comment_set.all %}
+            <tr>
+                <td> {{ c.visitor }} </td>
+                <td> {{ c.date_time | date:"F j, Y" }} </td>
+                <td> {{ c.content }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No comment</p>
+        {% endif %}
+
+        <br /><br />
+        {% if f.errors %}
+        <p style="color:red;">
+            Please fix ur comment by msg
+        </p>
+        {% endif %}
+
+        <form action="" method="post" class="form-horizontal" role="form" style="width:33%; margin:auto; text-align:left">{% csrf_token %}
+            <div class="form-group">
+            <label for="visitor">Visitor:</label>
+            {{ f.visitor }}
+            {{ f.visitor.errors }}
             </div>
-        </nav>
-
-        <div class="container">
-            <div class="center_padding">
-                <h2>{{ r.name }}'s comment</h2>
-                {% if r.comment_set.all %}
-                <p>There are {{ r.comment_set.all|length }} comments now</p>
-                <table class="table table-hover">
-                    <tr>
-                        <th>Visitor</th>
-                        <th>Time</th>
-                        <th>Comment</th>
-                    </tr>
-                    {% for c in r.comment_set.all %}
-                    <tr>
-                        <td> {{ c.visitor }} </td>
-                        <td> {{ c.date_time | date:"F j, Y" }} </td>
-                        <td> {{ c.content }} </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% else %}
-                <p>No comment</p>
-                {% endif %}
-                <br /><br />
-
-                {% if f.errors %}
-                <p style="color: red;"> 
-                * Form input failed, please fix it!
-                </p>
-                {% endif %}
-
-                <form action="" method="post" class="form-horizontal" role="form" style="width:33%; margin:auto; text-align:left">{% csrf_token %}
-<!--                     <div class="form-group">
-                    <label for="visitor">Visitor:</label>
-                    <input id="visitor" type="text" name="visitor" class="form-control">
-                    </div>
-                    <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input id="email" type="text" name="email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                    <label for="content">Comment:</label>
-                    <textarea id="content" rows="10" cols="48" name="content" class="form-control"></textarea>
-                    </div> -->
-                    <table>
-                        {{ f.as_table }}
-                    </table>
-
-                    <input type="submit" value="give-comment" class="btn btn-default">
-                </form>
+            <div class="form-group">
+                <label for="email">email:</label>
+            {{ f.email }}
+            {{ f.email.errors }}
             </div>
-        </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    </body>
-</html>
+            <div class="form-group">
+            <label for="content">comment:</label>
+            {{ f.content }}
+            {{ f.content.errors }}
+            </div>
+            <input type="submit" value="give_comment" class="btn btn-default">
+        </form>
+{% endblock %}
