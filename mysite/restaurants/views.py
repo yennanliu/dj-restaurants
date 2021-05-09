@@ -9,10 +9,14 @@ from restaurants.models import Restaurant, Food, Comment
 from restaurants.forms import CommentForm
 
 
-def menu(request, id):
-    if id:
-        restaurant = Restaurant.objects.get(id=id)
-        return render_to_response("menu.html", locals())
+def menu(request):
+    """retrun a menu response
+    :request: client request
+    :returns: http response
+    """
+    if 'id' in request.GET and request.GET['id'] != '':
+        restaurant = Restaurant.objects.get(id=request.GET['id'])
+        return render_to_response('menu.html', locals())
     else:
         return HttpResponseRedirect("/restaurants_list/")
 
@@ -62,6 +66,13 @@ def meta(request):
         print (k, v)
     print ("=== meta ===")
 
+
+# def menu(request, id):
+#     if id:
+#         restaurant = Restaurant.objects.get(id=id)
+#         return render_to_response("menu.html", locals())
+#     else:
+#         return HttpResponseRedirect("/restaurants_list/")
 
 # def comment(request, id):
 #     errors = []
