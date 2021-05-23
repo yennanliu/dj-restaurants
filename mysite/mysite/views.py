@@ -1,14 +1,14 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django import template
-#from django.template.loader import get_template
 from django.shortcuts import render_to_response
-from django.views.generic.base import View
-
-#from restaurants.models import Restaurant, Food
+from django.views.generic.base import View, TemplateView
 
 from django.contrib import auth
 from django.template import RequestContext
 from django.contrib.auth.forms import UserCreationForm
+
+#from restaurants.models import Restaurant, Food
+#from django.template.loader import get_template
 
 def login(request):
 
@@ -29,8 +29,18 @@ def login(request):
         #return render_to_response('registration/login.html',RequestContext(request, locals()))
         return render_to_response('login.html',RequestContext(request, locals()))
 
-def index(request):
-    return render_to_response('index.html', RequestContext(request, locals()))
+# def index(request):
+#     return render_to_response('index.html', RequestContext(request, locals()))
+
+
+class IndexView(TemplateView):
+
+    template_name = 'index.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context['request'] = request
+        return self.render_to_response(context)
 
 def logout(request):
     auth.logout(request)

@@ -220,7 +220,7 @@ user.has_perm('restaurants.can_comment')
 | Login | http://127.0.0.1:8000/accounts/login/ |  |
 | Admin | http://127.0.0.1:8000/admin/ |  (account : admin, pwd : admin) |
 | Restaurants list | http://127.0.0.1:8000/restaurants_list/ |  |
-| Menu | http://127.0.0.1:8000/menu/1 | http://127.0.0.1:8000/menu/2/  ...|
+| Menu | http://127.0.0.1:8000/menu/?id=1 | http://127.0.0.1:8000/menu/?id=2  ...|
 | Comment | http://127.0.0.1:8000/comment/1/ | http://127.0.0.1:8000/comment/2/ ... |
 
 
