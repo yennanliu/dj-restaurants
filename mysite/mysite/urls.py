@@ -12,13 +12,9 @@ from restaurants.views import menu, list_restaurants, comment
 urlpatterns = patterns(
     '',
     # mysite
-    url(r'^here/$', here)
-)
-
-urlpatterns += patterns(
-    # admin
+    url(r'^here/$', here),
     url(r'^admin/', include(admin.site.urls))
-    )
+)
 
 urlpatterns += patterns(
     # restaurants
