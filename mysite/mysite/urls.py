@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from mysite.views import here, add, welcome, login, index, logout, register
+from mysite.views import add, welcome, login, index, logout, register, HereView
 from restaurants.views import menu, list_restaurants, comment
 
 #from django.contrib.auth import views as auth_views
@@ -12,7 +12,8 @@ from restaurants.views import menu, list_restaurants, comment
 urlpatterns = patterns(
     '',
     # mysite
-    url(r'^here/$', here),
+    #url(r'^here/$', here),
+    url(r'^here/$', HereView.as_view()),
     url(r'^admin/', include(admin.site.urls))
 )
 

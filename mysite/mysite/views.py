@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django import template
 #from django.template.loader import get_template
 from django.shortcuts import render_to_response
+from django.views.generic.base import View
 
 #from restaurants.models import Restaurant, Food
 
@@ -59,8 +60,13 @@ def register(request):
     return render_to_response('register.html', RequestContext(request, locals()))
 
 
-def here(request):
-    return HttpResponse("helloooo! i am here !!")
+# def here(request):
+#     return HttpResponse("helloooo! i am here !!")
+
+class HereView(View):
+
+    def get(self, request):
+        return HttpResponse("helloooo! i am here !!")
 
 def add(request, a, b):
     a = int(a)
