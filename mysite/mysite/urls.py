@@ -22,7 +22,8 @@ urlpatterns += patterns(
     url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
     url(r'^menu/$', menu),
     url(r'^welcome/$', welcome),
-    url(r'^restaurants_list/$', list_restaurants),
+    #url(r'^restaurants_list/$', list_restaurants),
+    url(r'^restaurants_list/$', login_required(RestaurantView.as_view())),
     url(r'^comment/(\d{1,5})/$', comment),
     #url(r'^accounts/', include('django.contrib.auth.urls')), # login
     url(r'^accounts/login/$', login),

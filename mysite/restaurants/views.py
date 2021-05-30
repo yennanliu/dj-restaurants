@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from restaurants.models import Restaurant, Food, Comment
 from restaurants.forms import CommentForm
 
+from django.views.generic.list import ListView
 
 def menu(request):
     """retrun a menu response
@@ -20,14 +21,20 @@ def menu(request):
     else:
         return HttpResponseRedirect("/restaurants_list/")
 
-@login_required
-def list_restaurants(request):
-    restaurants = Restaurant.objects.all()
+# @login_required
+# def list_restaurants(request):
+#     restaurants = Restaurant.objects.all()
+#
+#     print (request.user.user_permissions.all())
+#     # try to storage object via session
+#     request.session['restaurants'] = restaurants
+#     return render_to_response('restaurants_list.html', RequestContext(request, locals()))
 
-    print (request.user.user_permissions.all())
-    # try to storage object via session
-    request.session['restaurants'] = restaurants
-    return render_to_response('restaurants_list.html', RequestContext(request, locals()))
+class RestaurantView(ListView):
+
+    model = Restaurant
+    template_name = 'restaurants_list.html'
+    context_object_name = "restaurants"
 
 @permission_required('restaurants.can_comment', login_url='/accounts/login/')
 def comment(request, id):
