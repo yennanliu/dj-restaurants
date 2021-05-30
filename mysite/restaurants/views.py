@@ -3,23 +3,38 @@ from django.shortcuts import render_to_response
 from django import template
 from django.utils import timezone
 from django.template import RequestContext
+
 from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
+
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
 
 from restaurants.models import Restaurant, Food, Comment
 from restaurants.forms import CommentForm
 
-from django.views.generic.list import ListView
 
-def menu(request):
-    """retrun a menu response
-    :request: client request
-    :returns: http response
-    """
-    if 'id' in request.GET and request.GET['id'] != '':
-        restaurant = Restaurant.objects.get(id=request.GET['id'])
-        return render_to_response('menu.html', locals())
-    else:
-        return HttpResponseRedirect("/restaurants_list/")
+# def menu(request):
+#     """retrun a menu response
+#     :request: client request
+#     :returns: http response
+#     """
+#     if 'id' in request.GET and request.GET['id'] != '':
+#         restaurant = Restaurant.objects.get(id=request.GET['id'])
+#         return render_to_response('menu.html', locals())
+#     else:
+#         return HttpResponseRedirect("/restaurants_list/")
+
+class MenuView(DetailView):
+
+    model = Restaurant
+    template_name = 'menu.html'
+    context_object_name = 'restaurant'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MenuView, self).dispatch(request, *args, **kwargs)
 
 # @login_required
 # def list_restaurants(request):

@@ -20,7 +20,8 @@ urlpatterns = patterns(
 urlpatterns += patterns(
     # restaurants
     url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
-    url(r'^menu/$', menu),
+    #url(r'^menu/$', menu),
+    url(r'^menu/(?P<pk>\d+)/$', MenuView.as_view()),
     url(r'^welcome/$', welcome),
     #url(r'^restaurants_list/$', list_restaurants),
     url(r'^restaurants_list/$', login_required(RestaurantView.as_view())),
