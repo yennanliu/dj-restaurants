@@ -1,15 +1,14 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django import template
-from django.utils import timezone
 from django.template import RequestContext
-
 from django.contrib.auth.decorators import login_required, permission_required
+
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-
 
 from restaurants.models import Restaurant, Food, Comment
 from restaurants.forms import CommentForm
@@ -35,6 +34,13 @@ class MenuView(DetailView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(MenuView, self).dispatch(request, *args, **kwargs)
+
+    # overwrite get method
+    def get(self, request, pk, *args, **kwargs):
+        try:
+            return super(MenuView, self).get(self, request, pk=pk, *args, **kwargs)
+        except Http404:
+            return HttpResponseRedirect('/restaurants_list/')
 
 # @login_required
 # def list_restaurants(request):
