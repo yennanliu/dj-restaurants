@@ -32,7 +32,7 @@ class Food(models.Model):
         """Meta: attribute, options"""
 
         ordering = ['price']
-        
+
 class Comment(models.Model):
     content = models.CharField(max_length=255)
     visitor = models.CharField(max_length=255)
@@ -44,6 +44,3 @@ class Comment(models.Model):
         permissions = (
             ("can_comment", "Can comment"),
         )
-#  define meta so can define ordering
-class Meta:
-    ordering = ['price']
