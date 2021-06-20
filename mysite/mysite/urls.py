@@ -25,7 +25,8 @@ urlpatterns += patterns(
     url(r'^welcome/$', welcome),
     #url(r'^restaurants_list/$', list_restaurants),
     url(r'^restaurants_list/$', login_required(RestaurantView.as_view())),
-    url(r'^comment/(\d{1,5})/$', comment),
+    #url(r'^comment/(\d{1,5})/$', CommentView),
+    url(r'^comment/(?P<pk>\d+)/$', CommentView.as_view()),
     #url(r'^accounts/', include('django.contrib.auth.urls')), # login
     url(r'^accounts/login/$', login),
     url(r'^accounts/logout/$', logout),

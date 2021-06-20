@@ -2,16 +2,19 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django import template
 from django.template import RequestContext
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
+from restaurants.permissions import user_can_comment
 
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 
 from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
+from django.views.generic.detail import DetailView, SingleObjectMixin
+from django.views.generic.edit import FormView
 
 from restaurants.models import Restaurant, Food, Comment
 from restaurants.forms import CommentForm
+
 
 
 # def menu(request):
@@ -57,33 +60,49 @@ class RestaurantView(ListView):
     template_name = 'restaurants_list.html'
     context_object_name = "restaurants"
 
-@permission_required('restaurants.can_comment', login_url='/accounts/login/')
-def comment(request, id):
-    if id:
-        r = Restaurant.objects.get(id=id)
-    else:
-        return HttpResponseRedirect("/restaurants_list/")
-    if request.POST:
-        f = CommentForm(request.POST)
-        if f.is_valid():
-            visitor = f.cleaned_data['visitor']
-            content = f.cleaned_data['content']
-            email = f.cleaned_data['email']
-            date_time = timezone.localtime(timezone.now())
-            c = Comment.objects.create(
-                visitor=visitor,
-                email=email,
-                content=content,
-                date_time=date_time,
-                restaurant=r
-                )
-            f = CommentForm()
 
-    else:
-        f = CommentForm()
 
-    return render_to_response('comment.html', RequestContext(request, locals()))  
+class CommentView(FormView, SingleObjectMixin):
 
+    """View associated with form"""
+
+    form_class = CommentForm
+    template_name = 'comment.html'
+    success_url = '/comment/'
+    initial = {'content': u'I have no idea'}
+    model = Restaurant
+    context_object_name = 'r'
+
+    def form_valid(self, form):
+        """form is validated, so use form data to create comment
+        :form: validated form
+        :returns: origin form_valid
+        """
+        Comment.objects.create(
+            visitor=form.cleaned_data['visitor'],
+            email=form.cleaned_data['email'],
+            content=form.cleaned_data['content'],
+            date_time=timezone.localtime(timezone.now()),
+            restaurant=self.get_object()
+        )
+        return self.render_to_response(self.get_context_data(
+                form=self.form_class(initial=self.initial))
+        )
+
+    def get_context_data(self, **kwargs):
+        """ assign attribute "object" that indicates the query object
+        :returns: origin context get from get_context_data with additional object parameter
+        """
+        self.object = self.get_object()
+        return super(CommentView, self).get_context_data(object=self.object, **kwargs)
+
+    @method_decorator(user_passes_test(user_can_comment, login_url='/accounts/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        """ return decorated dispatch
+        :request: request
+        :returns: return origin dispatch
+        """
+        return super(CommentView, self).dispatch(request, *args, **kwargs)
 
 def meta(request):
     values = request.META.items()
@@ -94,6 +113,33 @@ def meta(request):
         print (k, v)
     print ("=== meta ===")
 
+
+# @permission_required('restaurants.can_comment', login_url='/accounts/login/')
+# def comment(request, id):
+#     if id:
+#         r = Restaurant.objects.get(id=id)
+#     else:
+#         return HttpResponseRedirect("/restaurants_list/")
+#     if request.POST:
+#         f = CommentForm(request.POST)
+#         if f.is_valid():
+#             visitor = f.cleaned_data['visitor']
+#             content = f.cleaned_data['content']
+#             email = f.cleaned_data['email']
+#             date_time = timezone.localtime(timezone.now())
+#             c = Comment.objects.create(
+#                 visitor=visitor,
+#                 email=email,
+#                 content=content,
+#                 date_time=date_time,
+#                 restaurant=r
+#                 )
+#             f = CommentForm()
+
+#     else:
+#         f = CommentForm()
+
+#     return render_to_response('comment.html', RequestContext(request, locals())) 
 
 # def menu(request, id):
 #     if id:
