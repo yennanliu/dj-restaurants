@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('visitor', models.CharField(max_length=255)),
                 ('email', models.CharField(max_length=255)),
                 ('date_time', models.DateTimeField()),
-                ('restaurant', models.ForeignKey(to='restaurants.Restaurant')),
+                ('restaurant', models.ForeignKey(to='restaurants.Restaurant', on_delete=models.CASCADE)),
             ],
             options={
             },

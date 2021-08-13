@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='food',
             name='restaurant',
-            field=models.ForeignKey(to='restaurants.Restaurant'),
+            field=models.ForeignKey(to='restaurants.Restaurant', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

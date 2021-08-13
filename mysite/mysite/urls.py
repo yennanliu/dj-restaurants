@@ -12,15 +12,14 @@ from restaurants.views import *
 # below is django default login logout method (default login, logout uses login.html under mysite/templates/registration)
 #from django.contrib.auth.views import login, logout
 
-urlpatterns = [
-    '',
+urlpatterns = (
+    #'',
+    #url(''),
     # mysite
     #url(r'^here/$', here),
     url(r'^here/$', HereView.as_view()),
-    url(r'^admin/', admin.site.urls)
-]
+    url(r'^admin/', admin.site.urls),
 
-urlpatterns += [
     # restaurants
     #url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
     #url(r'^menu/$', menu),
@@ -35,4 +34,4 @@ urlpatterns += [
     url(r'^accounts/logout/$', logout),
     url(r'^index/$', IndexView.as_view()),
     url(r'^accounts/register/$', register)
-    ]
+)
