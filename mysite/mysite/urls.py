@@ -1,5 +1,8 @@
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+# https://stackoverflow.com/questions/49598416/importerror-cannot-import-name-patterns
+from django.urls import include, re_path
 from django.contrib import admin
+from django.conf.urls import url
 admin.autodiscover()
 
 from mysite.views import *
@@ -9,15 +12,15 @@ from restaurants.views import *
 # below is django default login logout method (default login, logout uses login.html under mysite/templates/registration)
 #from django.contrib.auth.views import login, logout
 
-urlpatterns = patterns(
+urlpatterns = [
     '',
     # mysite
     #url(r'^here/$', here),
     url(r'^here/$', HereView.as_view()),
     url(r'^admin/', include(admin.site.urls))
-)
+]
 
-urlpatterns += patterns(
+urlpatterns += [
     # restaurants
     url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
     #url(r'^menu/$', menu),
@@ -32,4 +35,4 @@ urlpatterns += patterns(
     url(r'^accounts/logout/$', logout),
     url(r'^index/$', IndexView.as_view()),
     url(r'^accounts/register/$', register)
-    )
+    ]

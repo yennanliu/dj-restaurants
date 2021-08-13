@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render_to_response
+#from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django import template
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
@@ -62,7 +63,7 @@ class CommentView(FormView, SingleObjectMixin):
             date_time=timezone.localtime(timezone.now()),
             restaurant=self.get_object()
         )
-        return self.render_to_response(self.get_context_data(
+        return self.render(self.get_context_data(
                 form=self.form_class(initial=self.initial))
         )
 

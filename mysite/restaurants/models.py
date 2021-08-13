@@ -19,7 +19,9 @@ class Food(models.Model):
     price = models.DecimalField(max_digits=3, decimal_places=0)
     comment = models.CharField(max_length=50, blank=True)
     is_spicy = models.BooleanField(default=False)
-    restaurant = models.ForeignKey(Restaurant)
+    # after django 2x, for FK, 1 to 1, we need add on_delete
+    # https://www.itread01.com/content/1545016715.html
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
     def __unicode__(self):
         """
@@ -38,7 +40,7 @@ class Comment(models.Model):
     visitor = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     date_time = models.DateTimeField()
-    restaurant = models.ForeignKey(Restaurant)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
     class Meta:
         permissions = (
