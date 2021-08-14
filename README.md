@@ -1,4 +1,4 @@
-# dj-restaurants
+# Dj-Restaurants
 
 > Build restaurants app via Django framework
 - Python 3.4, Django 1.7
@@ -6,7 +6,6 @@
 ```
 Home page (index) -> Register -> Login -> Restaurants list -> Menu -> Comment
 ```
-
 
 ### 1) Installation
 
