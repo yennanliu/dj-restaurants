@@ -226,6 +226,5 @@ user.has_perm('restaurants.can_comment')
 | Menu | http://127.0.0.1:8000/menu/?id=1 | http://127.0.0.1:8000/menu/?id=2  ...|
 | Comment | http://127.0.0.1:8000/comment/1/ | http://127.0.0.1:8000/comment/2/ ... |
 
-
 ### 6) Ref
 - https://github.com/its-django/mysite
